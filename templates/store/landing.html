@@ -1,0 +1,14 @@
+<div class="hero">
+    <div class="hero-clipped">
+        <div class="hero-textbox">
+            <h1 class="main-heading mb-2">Shoe Store</h1>
+            <h2 class="sub-heading">Buy the best designer shoes at low prices.</h2>
+            <a href="#" class="cta-btn">See All</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    gsap.fromTo('.hero-clipped', {scaleX: 0}, {duration: 1, scaleX: 1});
+    gsap.fromTo('.hero-textbox', {yPercent: 40, opacity:0}, {duration: 1, delay: 1, opacity: 1, yPercent:-50});
+</script>

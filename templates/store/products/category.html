@@ -1,0 +1,104 @@
+{% extends "../base.html" %} 
+{% load static %} 
+{% block title %} 
+{% if category %}
+{{ category.name }}
+{% else %}
+Products
+{% endif %} 
+{% endblock %} 
+{% block content %}
+<!-- 
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="album py-5">
+        <div class="pb-3"><h1 class="h3">Popular</h1></div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+          {% for product in products %}
+
+          <div class="col">
+            <div class="card border-0">
+              {% for image in product.product_image.all %} 
+              {% if image.is_feature %}
+              <img
+                class="img-fluid"
+                alt="Responsive image"
+                src="{{image.image.url}}"
+                alt="{{ image.image.alt_text }}"
+              />
+              {% endif %} 
+              {% endfor %}
+              <div class="card-body px-0">
+                <p class="card-text">
+                  <a
+                    class="text-dark text-decoration-none"
+                    href="{{ product.get_absolute_url }}"
+                    >{{ product.title }}</a
+                  >
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">£{{product.regular_price}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</main> -->
+
+
+<section class="section-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="section-title text-dark">
+          <h2>{% if category %}
+                {{ category.name }}
+              {% else %}
+                Products
+              {% endif %} 
+          </h2>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      {% for product in products %}
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+        <div class="single-product">
+          {% for image in product.product_image.all  %}
+          {% if image.is_feature %}
+          <div class="product-thumb">
+            <img alt="Responsive image" src="{{image.image.url}}" alt="{{ image.image.alt_text }}">
+          </div>
+          {% endif %}
+          {% endfor %}
+          <div class="product-title text-dark">
+            <h3><a class="text-dark" href="{{ product.get_absolute_url }}">{{ product.title|slice:":50" }}</a></h3>
+          </div>
+          <div class="product-btns text-dark">
+            <a href="#" class="fw-bold btn-small text-dark">${{product.regular_price}}</a>
+            <a href="{{ product.get_absolute_url }}" class="btn-round mr-2 text-dark">Buy Now</a>
+          </div>
+        </div>
+        
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row button-center">
+      <div class="col-xl-6 centered">
+        <a href="#" class="btn-def"><span>Load more</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+{% endblock %}

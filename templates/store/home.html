@@ -1,0 +1,47 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}ShoeStore{% endblock %}
+{% block content %}
+{% include './landing.html' %}
+<section class="section-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="section-title">
+          <h2>Products</h2>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      {% for product in products %}
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+        <div class="single-product">
+          {% for image in product.product_image.all  %}
+          {% if image.is_feature %}
+          <div class="product-thumb">
+            <img alt="Responsive image" src="{{image.image.url}}" alt="{{ image.image.alt_text }}">
+          </div>
+          {% endif %}
+          {% endfor %}
+          <div class="product-title">
+            <h3><a href="{{ product.get_absolute_url }}">{{ product.title|slice:":50" }}</a></h3>
+          </div>
+          <div class="product-btns text-dark">
+            <a href="#" class="fw-bold btn-small text-dark">${{product.regular_price}}</a>
+            <a href="{{ product.get_absolute_url }}" class="btn-round mr-2 text-dark">Buy Now</a>
+          </div>
+        </div>
+        
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row button-center">
+      <div class="col-xl-6 centered">
+        <a href="#" class="btn-def"><span>Load more</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
